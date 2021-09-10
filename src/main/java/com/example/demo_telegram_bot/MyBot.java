@@ -17,23 +17,25 @@ public class MyBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        System.out.println(botName);
-        return botName;
+        System.out.println(botToken);
+        return botToken;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        System.out.println(".....................................");
-        if (!update.hasMessage() || !update.getMessage().hasText())
-            return;
-        final String text = update.getMessage().getText();
-        final long chatId = update.getMessage().getChatId();
-        System.out.println(text+" - from - " + chatId);
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            System.out.println(".....................................");
+            final String text = update.getMessage().getText();
+            final long chatId = update.getMessage().getChatId();
+            System.out.println(text+" - from - " + chatId);
+        }
+        
     }
 
     @Override
     public String getBotUsername() {
-        System.out.println(botToken);
-        return botToken;
+        System.out.println(botName);
+        return botName;
     }
+
 }
